@@ -18,19 +18,20 @@ function App() {
   useEffect(() => {
     const getText = async () => {
       //to be able to use async and await in useEffect we need to create an async function.
-      const response = await fetch("http://database.cdqmgmgm25g1.eu-north-1.rds.amazonaws.com:5001"); //we fetch from our api server running on port 5001
+      const response = await fetch('http://database.cdqmgmgm25g1.eu-north-1.rds.amazonaws.com:5432'); //we fetch from our api server running on port 5001
       const data = await response.json(); //we get the json data
       //the data is an array with one item. This item is an object with _id and greeting properties
       //this makes sense since we turned the data into an array in line 20 in server.js and the array is the collection from MongoDB
       //this collection has only one document and our objet represents the data in that document.
 
       //now let's get the string from greeting into our greeting state:
+      console.log(data)
       setText(data);
     };
 
     getText();
   }, []);
-  return <>{text.map(item => <li key={item.id}>{item.id}  {item.name}</li>)} </>;
+  return <>smarsmar{text.map(item => <li key={item.id}>{item.id}  {item.name}</li>)} </>;
 }
 
 export default App;
